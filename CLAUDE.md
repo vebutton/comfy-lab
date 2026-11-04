@@ -65,8 +65,8 @@ Claude Code CLI. Claude Code drives ComfyUI two ways:
 - First started: CLI
 - Date: 2026-11-03
 - Account: comfy-lab runs on the personal Claude subscription via the `claude-personal`
-  wrapper (`CLAUDE_CONFIG_DIR=~/.claude-personal`), not the default work login. Until
-  T-PROJ-01 closes, sessions may still be on the default account — check `/status`.
+  wrapper (`CLAUDE_CONFIG_DIR=~/.claude-personal`), not the default work login. Skills
+  and commands live in that config separately — missing ones mean the wrong account.
 
 ---
 

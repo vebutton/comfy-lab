@@ -31,8 +31,8 @@
 ## 1. Items
 
 ### PROJ — Project and repo plumbing
-- [ ] T-PROJ-01 Set up the `claude-personal` wrapper and run comfy-lab sessions on the personal subscription
-- [ ] T-PROJ-02 Create the public GitHub repo under the personal account, committing with the personal git identity
+- [x] T-PROJ-01 Set up the `claude-personal` wrapper and run comfy-lab sessions on the personal subscription (resolved 2026-11-03: session confirmed on `claude-personal`; skills and commands re-added to the personal config)
+- [x] T-PROJ-02 Create the public GitHub repo under the personal account, committing with the personal git identity (resolved 2026-11-03: `gh` reports PUBLIC; commits use the personal email)
 
 ### EVENT — Track 1: Event-ready M4
 - [x] T-EVENT-01 Prepare the external SSD for models (APFS, fast port, ComfyUI model folder layout) (resolved 2026-11-03: already APFS on a PCIe link; `comfyui/models/` created — see `docs/setup.md`)
@@ -45,17 +45,16 @@
 ## 2. Item detail
 
 ### PROJ
-- **T-PROJ-01** — Looks done: the 2026-11-03 evening session ran with
-  `CLAUDE_CONFIG_DIR=~/.claude-personal`. Left to close: confirm in `/status` that the
-  login is the personal account, then tick. The policy sanity check (§3) stays open
-  separately as accepted risk.
-- **T-PROJ-02** — Looks done: `origin` is the personal-account repo and the first commit
-  carries the personal email. Left to close: confirm the repo is public, then tick.
+- **T-PROJ-01** — Done. The policy sanity check (§3) stays open separately as accepted
+  risk.
+- **T-PROJ-02** — Done.
 
 ### EVENT
 - **T-EVENT-05** — Done. 1024×1024 fits but pushes swap to ~4 GB; keep other apps closed.
-- **T-EVENT-06** — Expect slow generation on 16 GB. Flux Dev is non-commercial; record
-  the exact licence of whichever variant is downloaded.
+- **T-EVENT-06** — Chose FLUX.2 [klein] 4B (Apache 2.0, native ComfyUI support, no
+  custom node) over a quantised Flux 1, since it is smaller and step-distilled. Models
+  registered in `docs/models.md`. Left: one test image, save the workflow to `workflows/`.
+  Fallback if it swaps hard: unsloth's Q8_0 GGUF (4.3 GB) plus ComfyUI-GGUF.
 
 ## 3. Open questions
 Each one names the item that will resolve it, or is marked accepted risk.
