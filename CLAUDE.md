@@ -31,8 +31,8 @@ Large model files never live in the repo.
 ## Interface
 Claude Code CLI. Claude Code drives ComfyUI two ways:
 - **Local HTTP API** — submit workflows saved in *API format* to the server's prompt
-  endpoint and fetch the results (curl or small scripts). The Desktop app's port is
-  unconfirmed (possibly 8000; a standard install uses 8188) — see TODO.md §3.
+  endpoint and fetch the results (curl or small scripts). The Desktop app listens on
+  `127.0.0.1:8188` (see `docs/setup.md`).
 - **comfy-cli** — the official CLI for installs, custom nodes, model downloads and running
   workflows. Optional alongside the Desktop app.
 
@@ -81,7 +81,7 @@ Claude Code CLI. Claude Code drives ComfyUI two ways:
   folder points at the external SSD, SDXL (plus a quantised Flux if time allows) is
   downloaded over home Wi-Fi, and one test image has been generated. Everything else is
   secondary.
-- **Status:** Not started.
+- **Status:** In progress. T-EVENT-01 → T-EVENT-04 done (2026-11-03); T-EVENT-05 next.
 - **Depends on:** Nothing — this is the first track.
 
 **Further tracks:** None yet. Add each as `### Track N — [Name] ([SLUG])` with the same
@@ -95,15 +95,22 @@ existing track** or **must stand alone**.
 > Forward-looking operating context only. Archaeology lives in `docs/session-state.md`.
 > Task state is not kept here: open items, progress and recurring work live in `TODO.md`.
 
-**Last:** Project context, requirements and task register written; nothing installed yet.
-The event is tomorrow (date in `CLAUDE.local.md`), so Track 1 is time-critical tonight.
+**Last (2026-11-03 evening):** ComfyUI Desktop installed and running on 8188. Shared
+Models points at the SSD (`/Volumes/LLM-2TB/comfyui/models`), and SDXL base 1.0 is
+downloaded there and registered. No image generated yet. The operator restarted the Mac
+to free memory before T-EVENT-05. The event is tomorrow (`CLAUDE.local.md`).
 
 **Next session — pick up here:**
 1. Cold start — re-read CLAUDE.md and CLAUDE.local.md. Consult docs/session-state.md on demand.
-2. T-EVENT-01 → T-EVENT-05 in order, tonight, on home Wi-Fi: SSD prep, Desktop install,
-   model folder → SSD, SDXL download, first image + saved workflow.
-3. T-EVENT-06 (quantised Flux) only if time remains.
-4. T-PROJ-01 (personal-subscription wrapper) whenever convenient; it doesn't block Track 1.
+2. Pre-flight: SSD mounted; Ollama/oMLX not running (`curl -s :8188/system_stats` →
+   check `ram_free`; it was only ~3 GB last session); Desktop running.
+3. T-EVENT-05: open the SDXL template in Desktop (not the default Z-Image Turbo template
+   — its 19 GB bf16 models don't fit in 16 GB), generate one image, export the workflow
+   in both UI and API format to `workflows/`, submit the API version via curl as a
+   check.
+4. T-EVENT-06 (quantised Flux) only if time remains.
+5. Close T-PROJ-01 (`/status` shows personal login?) and T-PROJ-02 (repo public?) once
+   confirmed — see TODO.md §2.
 
 **Continuity reminders:**
 - Git identity: commits must use the personal email (in `CLAUDE.local.md`), not the
@@ -112,6 +119,11 @@ The event is tomorrow (date in `CLAUDE.local.md`), so Track 1 is time-critical t
   guards against it.
 - The repo will be public: no third-party presenter content gets committed until its
   licence is known (TODO.md §3).
+- Setup facts (paths, port, versions, Desktop's instance vs shared storage) live in
+  `docs/setup.md`. Never hand-edit Desktop's generated `instance-model-paths/*.yaml`;
+  change Desktop Settings → Storage and restart instead.
+- The operator shares screenshots by dropping them in `collateral/` (gitignored) — look
+  there, newest first.
 
 **Session continuity:** Next session is a cold start — re-read CLAUDE.md before doing
 anything. Sessions are never re-entered. End-of-session updates cover three layers: this

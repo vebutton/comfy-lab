@@ -35,37 +35,24 @@
 - [ ] T-PROJ-02 Create the public GitHub repo under the personal account, committing with the personal git identity
 
 ### EVENT — Track 1: Event-ready M4
-- [ ] T-EVENT-01 Prepare the external SSD for models (APFS, fast port, ComfyUI model folder layout)
-- [ ] T-EVENT-02 Install ComfyUI Desktop on the M4 and confirm it launches; record version and API port
-- [ ] T-EVENT-03 Point ComfyUI's model folder at the SSD and record the config in `docs/setup.md`
-- [ ] T-EVENT-04 Download an SDXL checkpoint to the SSD over home Wi-Fi; add it to `docs/models.md` with licence
+- [x] T-EVENT-01 Prepare the external SSD for models (APFS, fast port, ComfyUI model folder layout) (resolved 2026-11-03: already APFS on a PCIe link; `comfyui/models/` created — see `docs/setup.md`)
+- [x] T-EVENT-02 Install ComfyUI Desktop on the M4 and confirm it launches; record version and API port (resolved 2026-11-03: Desktop 1.1.8 / core 0.44.0, API on 127.0.0.1:8188 — see `docs/setup.md`)
+- [x] T-EVENT-03 Point ComfyUI's model folder at the SSD and record the config in `docs/setup.md` (resolved 2026-11-03: Shared Models → SSD via Desktop Settings; verified in the regenerated paths file)
+- [x] T-EVENT-04 Download an SDXL checkpoint to the SSD over home Wi-Fi; add it to `docs/models.md` with licence (resolved 2026-11-03: SDXL base 1.0 on the SSD, hash verified, registered)
 - [ ] T-EVENT-05 Generate one SDXL test image; save the workflow (UI + API format) to `workflows/`
 - [ ] T-EVENT-06 (if time) Download a quantised Flux model plus any required custom node; register both
 
 ## 2. Item detail
 
 ### PROJ
-- **T-PROJ-01** — Steps from the defining conversation: `mkdir ~/.claude-personal`; add a
-  `claude-personal()` shell function to `~/.zshrc` that sets
-  `CLAUDE_CONFIG_DIR="$HOME/.claude-personal"` for that one command; run it and `/login`
-  with the personal account; confirm with `/status`. Watch for: an exported
-  `ANTHROPIC_API_KEY` (overrides subscription login — `unset` it inside the function);
-  managed settings that force the work org (surfaces at `/login`); global CLAUDE.md,
-  skills and settings don't follow — symlink or copy them into the new folder; history
-  is separate per config folder. Touches `~/.zshrc` — outside the project, confirm first.
-  Also: the policy sanity check in §3.
-- **T-PROJ-02** — Repo name and owner are fixed (personal account, public). After the
-  fresh `git init`, set the repo-local `user.email` to the personal address in
-  `CLAUDE.local.md` and verify it before the first commit — the global default is the
-  work address.
+- **T-PROJ-01** — Looks done: the 2026-11-03 evening session ran with
+  `CLAUDE_CONFIG_DIR=~/.claude-personal`. Left to close: confirm in `/status` that the
+  login is the personal account, then tick. The policy sanity check (§3) stays open
+  separately as accepted risk.
+- **T-PROJ-02** — Looks done: `origin` is the personal-account repo and the first commit
+  carries the personal email. Left to close: confirm the repo is public, then tick.
 
 ### EVENT
-- **T-EVENT-01** — Format as APFS if it isn't already; use a fast USB/Thunderbolt port.
-  The same drive moves to the Studio later, so pick a layout that's machine-agnostic.
-- **T-EVENT-02** — Desktop port is possibly 8000 (standard installs use 8188); confirm on
-  this machine and record it in `docs/setup.md` and CLAUDE.md → Interface.
-- **T-EVENT-04** — Several GB; do it tonight, not on event Wi-Fi. Unload Ollama/oMLX
-  models first (§4).
 - **T-EVENT-05** — Doubles as the smoke test for the memory budget on 16 GB.
 - **T-EVENT-06** — Expect slow generation on 16 GB. Flux Dev is non-commercial; record
   the exact licence of whichever variant is downloaded.
@@ -78,7 +65,7 @@ Each one names the item that will resolve it, or is marked accepted risk.
 - **Which model licences allow work use?** Flux Dev is non-commercial. Resolved per model
   as each lands in `docs/models.md` (T-EVENT-04, T-EVENT-06).
 - **Which custom nodes and models will the presenters need?** Answered at the event.
-- **Desktop app API port** — 8000 or 8188? Resolved by T-EVENT-02.
+- ~~**Desktop app API port** — 8000 or 8188?~~ Resolved by T-EVENT-02: 8188.
 - **Can presenter content be committed to a public repo?** Depends on what they share and
   under what licence. Until known, keep it in `collateral/` (gitignored).
 - **Is running personal tooling on this machine fine with the employer?** Quick policy
@@ -91,7 +78,7 @@ Recurring work: no IDs, no checkboxes, tracked by last-run date.
 | Operation | Cadence / trigger | Last run | Notes |
 |---|---|---|---|
 | Unload Ollama and oMLX models | Before every ComfyUI generation session | — | All three share 16 GB; ComfyUI crawls or crashes otherwise |
-| Register new models and custom nodes | Whenever one is downloaded | — | `docs/models.md` (with licence), `docs/custom-nodes.md` |
+| Register new models and custom nodes | Whenever one is downloaded | 2026-11-03 | `docs/models.md` (with licence), `docs/custom-nodes.md` |
 
 ## 5. Unscheduled
 Ideas that came up but aren't committed work. No ID until promoted into a track.
@@ -100,6 +87,7 @@ Ideas that came up but aren't committed work. No ID until promoted into a track.
 - Drive ComfyUI end to end from Claude Code via the HTTP API with API-format workflows.
 - Try comfy-cli alongside the Desktop app (custom nodes, model downloads, running workflows).
 - Try a community ComfyUI MCP server.
+- Try Z-Image Turbo (the Desktop default template). bf16 needs 19 GB, too much for 16 GB; look for a smaller fp8/GGUF variant and check its licence.
 - Short video clips with a small model (e.g. the lighter Wan variant).
 - Evaluate against the success test and decide whether to keep ComfyUI.
 - Move the project to the Mac Studio: plug in the SSD, re-point the model folder.
