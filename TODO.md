@@ -39,7 +39,7 @@
 - [x] T-EVENT-02 Install ComfyUI Desktop on the M4 and confirm it launches; record version and API port (resolved 2026-11-03: Desktop 1.1.8 / core 0.44.0, API on 127.0.0.1:8188 — see `docs/setup.md`)
 - [x] T-EVENT-03 Point ComfyUI's model folder at the SSD and record the config in `docs/setup.md` (resolved 2026-11-03: Shared Models → SSD via Desktop Settings; verified in the regenerated paths file)
 - [x] T-EVENT-04 Download an SDXL checkpoint to the SSD over home Wi-Fi; add it to `docs/models.md` with licence (resolved 2026-11-03: SDXL base 1.0 on the SSD, hash verified, registered)
-- [ ] T-EVENT-05 Generate one SDXL test image; save the workflow (UI + API format) to `workflows/`
+- [x] T-EVENT-05 Generate one SDXL test image; save the workflow (UI + API format) to `workflows/` (resolved 2026-11-03: 512 and 1024 runs OK, ~2.5 min at 1024; workflow saved in both formats; curl API submission verified — timings in `docs/setup.md`)
 - [ ] T-EVENT-06 (if time) Download a quantised Flux model plus any required custom node; register both
 
 ## 2. Item detail
@@ -53,7 +53,7 @@
   carries the personal email. Left to close: confirm the repo is public, then tick.
 
 ### EVENT
-- **T-EVENT-05** — Doubles as the smoke test for the memory budget on 16 GB.
+- **T-EVENT-05** — Done. 1024×1024 fits but pushes swap to ~4 GB; keep other apps closed.
 - **T-EVENT-06** — Expect slow generation on 16 GB. Flux Dev is non-commercial; record
   the exact licence of whichever variant is downloaded.
 

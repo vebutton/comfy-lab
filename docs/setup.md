@@ -24,3 +24,17 @@
   `~/Library/Application Support/Comfy Desktop/instance-model-paths/inst-*.yaml`
   ("do not edit manually"); its base path follows the Shared Models setting below.
 - Model folder → SSD: Desktop Settings → Storage → Shared Models set to `/Volumes/LLM-2TB/comfyui/models` (marked DOWNLOADS, so in-app downloads land on the SSD). The instance keeps "Include Shared Directories" on. Restart Desktop after changing it. The INSTANCE row (`~/ComfyUI-Installs/ComfyUI/ComfyUI/models`) is the install's private folder — unused.
+
+## Performance on the M4 (16 GB)
+SDXL base 1.0, 25 steps, dpmpp_2m/karras, measured 2026-11-03 after a fresh restart with
+Ollama/oMLX off. Times are server-side (`execution_start` → `execution_success` in `/history`).
+
+| Size | Time | Notes |
+|---|---|---|
+| 512×512 | 42.5 s | First run, includes model load |
+| 512×512 | 34.2 s | Model already loaded (API submission via curl) |
+| 1024×1024 | 146.7 s | Model and prompts cached; swap reached ~4.2 GB |
+
+SDXL's native size is 1024×1024; use it for anything slide-facing. The workflow is in
+`workflows/sdxl-basic-1024.{ui,api}.json`. Submit the API file as
+`{"prompt": <file contents>}` to `POST :8188/prompt`, then poll `GET :8188/history/<prompt_id>`.
