@@ -66,3 +66,42 @@
 
 **Commits**
 - Session housekeeping commit (CLAUDE.md brief, TODO.md §4, this entry).
+
+## 2026-11-03 (night) — Track 1 finish: first images, Flux, PROJ closeout
+
+**Done**
+- Pre-flight: Mac restarted (88% memory free reported), SSD mounted, Ollama/oMLX off.
+- T-EVENT-05: SDXL base 1.0 at 512 (42.5 s cold) and 1024 (146.7 s; checkpoint and both
+  prompt encodes cached). Workflow saved from server history as
+  `workflows/sdxl-basic-1024.{ui,api}.json`; API file submitted via curl (new seed, 512
+  override) → success, 34.2 s. Timings in `docs/setup.md` → Performance on the M4.
+- T-PROJ-02: `gh` reports the repo PUBLIC. T-PROJ-01: operator confirmed the session is
+  on `claude-personal` (skills/commands were missing there and had to be re-added).
+- T-EVENT-06: downloaded FLUX.2 [klein] 4B distilled (7.75 GB), Qwen3 4B text encoder
+  (8.04 GB) and FLUX.2 VAE (0.34 GB) from Comfy-Org/Flux-2-Klein-4B @ `5b3abca` to the
+  SSD; all SHA-256 match. Registered (Apache 2.0). Generated via the Desktop template at
+  1024: 84.3 s cold, 64.2 s warm via curl API submission. Workflow saved as
+  `workflows/flux2-klein-4b-distilled-1024.{ui,api}.json`. Track 1 marked done.
+- Refreshed `.atlas/overview.md` (2 [NEEDS]: success test; a shareable sample image).
+
+**Decisions and reasoning**
+- Flux choice: Klein 4B distilled over the planned quantised Flux 1 Schnell (GGUF Q4_K_S
+  + T5 GGUF, ~10 GB, needs ComfyUI-GGUF). Klein is newer, 4B vs 12B, step-distilled
+  (4 steps), Apache 2.0, native in ComfyUI. Option A (native bf16, ~16 GB download)
+  picked over B (unsloth Q8_0 GGUF 4.3 GB + ComfyUI-GGUF) for no custom node; B remains
+  the fallback, reusing the same encoder and VAE.
+- Ruled out: the Qwen3 fp4 text encoder (fp4 unlikely to work on Metal); the BFL
+  `ae.safetensors` (gated); the base Klein model (needs 20–50 steps + CFG).
+- SDXL at 512 is below native; 1024 is the size for slides.
+
+**Observed**
+- Desktop's "49 s" readout on the 1024 SDXL run was mid-job; the job was still running
+  (VAE decode). Use server history for timings.
+- The Klein template has two subgraph pipelines; base active, distilled bypassed. Its
+  missing-model prompt asked for `flux-2-klein-base-4b.safetensors` until swapped.
+- Swap: ~4.2 GB after SDXL 1024; ~12.8 GB after the first Klein run, back to ~3.2 GB
+  after the warm run.
+
+**Commits**
+- `0f9905a` T-EVENT-05; `6b0fd2e` Klein download + T-PROJ-01/02; `2e05369` T-EVENT-06 +
+  Track 1 done; plus this housekeeping commit.

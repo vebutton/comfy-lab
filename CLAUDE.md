@@ -96,26 +96,31 @@ existing track** or **must stand alone**.
 > Forward-looking operating context only. Archaeology lives in `docs/session-state.md`.
 > Task state is not kept here: open items, progress and recurring work live in `TODO.md`.
 
-**Last (2026-11-03 late evening):** Short housekeeping session. Created the Atlas
-overview `.atlas/overview.md` (gitignored). Checked memory: ~7 GB usable, no Ollama/oMLX,
-Desktop closed — the planned restart had not happened yet. Install state is unchanged:
-Desktop on 8188, Shared Models on the SSD, SDXL base 1.0 registered, no image generated
-yet. The event is tomorrow (`CLAUDE.local.md`).
+**Last (2026-11-03 night):** Track 1 finished. SDXL and FLUX.2 [klein] 4B distilled both
+generate at 1024 on the M4 (146.7 s vs 64.2 s warm), workflows saved in UI + API format,
+curl submission verified for both. T-PROJ-01 and T-PROJ-02 closed. Every TODO item is now
+closed; what remains is post-event work in TODO.md §3 and §5. The event is 2026-11-04
+(`CLAUDE.local.md`).
 
 **Next session — pick up here:**
 1. Cold start — re-read CLAUDE.md and CLAUDE.local.md. Consult docs/session-state.md on demand.
-2. Pre-flight: restart the Mac first if it hasn't been (~7 GB usable is tight for the
-   ~7 GB SDXL checkpoint). SSD mounted; Ollama/oMLX not running; Desktop running, then
-   `curl -s :8188/system_stats` → check `ram_free`.
-3. T-EVENT-05: open the SDXL template in Desktop (not the default Z-Image Turbo template
-   — its 19 GB bf16 models don't fit in 16 GB), generate one image, export the workflow
-   in both UI and API format to `workflows/`, submit the API version via curl as a
-   check.
-4. T-EVENT-06 (quantised Flux) only if time remains.
-5. Close T-PROJ-01 (`/status` shows personal login?) and T-PROJ-02 (repo public?) once
-   confirmed — see TODO.md §2.
+2. If at the event: pre-flight as usual (SSD mounted, Ollama/oMLX off, Desktop up,
+   `curl -s :8188/system_stats`). Default to Klein (`workflows/flux2-klein-4b-distilled-1024.*`).
+   New models the presenters need: register with licence before use.
+3. Capture presenter workflows and notes into `collateral/` (gitignored); nothing gets
+   committed until its licence is known (TODO.md §3).
+4. After the event: no track is open. Propose Track 2 (with IDs, by agreement) around the
+   success test and keep/drop decision — TODO.md §3 and §5 hold the candidates.
 
 **Continuity reminders:**
+- Desktop's Klein 4B template ships with the *base* pipeline active and the distilled one
+  bypassed (purple). Swap them (Node state → Normal/Bypass, or ⌘B) — including the Save
+  Image nodes. Steps/CFG live inside the subgraphs.
+- Memory: first Klein run at 1024 pushed swap to ~12.8 GB. Keep other engines and heavy
+  tabs closed; first image after launch is slow, then ~1 min each.
+- Pull workflows from server history (`/history` → `prompt[2]` = API, `prompt[3]
+  .extra_pnginfo.workflow` = UI) rather than exporting by hand; scan for personal paths
+  before committing.
 - Git identity: commits must use the personal email (in `CLAUDE.local.md`), not the
   global default. Set it repo-local after any `git init` and verify before committing.
 - Model files (`*.safetensors`, `*.ckpt`, `*.gguf`, …) never enter the repo — `.gitignore`
