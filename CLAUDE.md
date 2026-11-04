@@ -81,7 +81,8 @@ Claude Code CLI. Claude Code drives ComfyUI two ways:
   folder points at the external SSD, SDXL (plus a quantised Flux if time allows) is
   downloaded over home Wi-Fi, and one test image has been generated. Everything else is
   secondary.
-- **Status:** In progress. T-EVENT-01 → T-EVENT-04 done (2026-11-03); T-EVENT-05 next.
+- **Status:** Done (2026-11-03). T-EVENT-01 → T-EVENT-06 closed: SDXL and FLUX.2 [klein] 4B
+  both generate at 1024 on the M4, with workflows in `workflows/`.
 - **Depends on:** Nothing — this is the first track.
 
 **Further tracks:** None yet. Add each as `### Track N — [Name] ([SLUG])` with the same

@@ -38,3 +38,14 @@ Ollama/oMLX off. Times are server-side (`execution_start` → `execution_success
 SDXL's native size is 1024×1024; use it for anything slide-facing. The workflow is in
 `workflows/sdxl-basic-1024.{ui,api}.json`. Submit the API file as
 `{"prompt": <file contents>}` to `POST :8188/prompt`, then poll `GET :8188/history/<prompt_id>`.
+
+FLUX.2 [klein] 4B distilled, 4 steps, euler, CFG 1.0, 1024×1024 (Desktop template
+"Text to Image (FLUX.2 Klein 4B Distilled)"; the template also holds a bypassed
+base-model pipeline, which is the one active by default — swap them):
+
+| Run | Time | Notes |
+|---|---|---|
+| First | 84.3 s | Includes loading the text encoder and model; swap peaked ~12.8 GB |
+| Warm | 64.2 s | Models and prompt encoding cached (API submission via curl) |
+
+Workflow: `workflows/flux2-klein-4b-distilled-1024.{ui,api}.json`.

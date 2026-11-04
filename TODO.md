@@ -40,7 +40,7 @@
 - [x] T-EVENT-03 Point ComfyUI's model folder at the SSD and record the config in `docs/setup.md` (resolved 2026-11-03: Shared Models → SSD via Desktop Settings; verified in the regenerated paths file)
 - [x] T-EVENT-04 Download an SDXL checkpoint to the SSD over home Wi-Fi; add it to `docs/models.md` with licence (resolved 2026-11-03: SDXL base 1.0 on the SSD, hash verified, registered)
 - [x] T-EVENT-05 Generate one SDXL test image; save the workflow (UI + API format) to `workflows/` (resolved 2026-11-03: 512 and 1024 runs OK, ~2.5 min at 1024; workflow saved in both formats; curl API submission verified — timings in `docs/setup.md`)
-- [ ] T-EVENT-06 (if time) Download a quantised Flux model plus any required custom node; register both
+- [x] T-EVENT-06 (if time) Download a quantised Flux model plus any required custom node; register both (resolved 2026-11-03: FLUX.2 [klein] 4B distilled instead — Apache 2.0, native, no custom node; 64 s warm at 1024; workflow saved, API verified)
 
 ## 2. Item detail
 
@@ -51,10 +51,8 @@
 
 ### EVENT
 - **T-EVENT-05** — Done. 1024×1024 fits but pushes swap to ~4 GB; keep other apps closed.
-- **T-EVENT-06** — Chose FLUX.2 [klein] 4B (Apache 2.0, native ComfyUI support, no
-  custom node) over a quantised Flux 1, since it is smaller and step-distilled. Models
-  registered in `docs/models.md`. Left: one test image, save the workflow to `workflows/`.
-  Fallback if it swaps hard: unsloth's Q8_0 GGUF (4.3 GB) plus ComfyUI-GGUF.
+- **T-EVENT-06** — Done. Fallback if Klein swaps too hard: unsloth's Q8_0 GGUF (4.3 GB)
+  plus ComfyUI-GGUF.
 
 ## 3. Open questions
 Each one names the item that will resolve it, or is marked accepted risk.
