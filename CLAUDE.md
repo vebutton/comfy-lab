@@ -95,15 +95,17 @@ existing track** or **must stand alone**.
 > Forward-looking operating context only. Archaeology lives in `docs/session-state.md`.
 > Task state is not kept here: open items, progress and recurring work live in `TODO.md`.
 
-**Last (2026-11-03 evening):** ComfyUI Desktop installed and running on 8188. Shared
-Models points at the SSD (`/Volumes/LLM-2TB/comfyui/models`), and SDXL base 1.0 is
-downloaded there and registered. No image generated yet. The operator restarted the Mac
-to free memory before T-EVENT-05. The event is tomorrow (`CLAUDE.local.md`).
+**Last (2026-11-03 late evening):** Short housekeeping session. Created the Atlas
+overview `.atlas/overview.md` (gitignored). Checked memory: ~7 GB usable, no Ollama/oMLX,
+Desktop closed — the planned restart had not happened yet. Install state is unchanged:
+Desktop on 8188, Shared Models on the SSD, SDXL base 1.0 registered, no image generated
+yet. The event is tomorrow (`CLAUDE.local.md`).
 
 **Next session — pick up here:**
 1. Cold start — re-read CLAUDE.md and CLAUDE.local.md. Consult docs/session-state.md on demand.
-2. Pre-flight: SSD mounted; Ollama/oMLX not running (`curl -s :8188/system_stats` →
-   check `ram_free`; it was only ~3 GB last session); Desktop running.
+2. Pre-flight: restart the Mac first if it hasn't been (~7 GB usable is tight for the
+   ~7 GB SDXL checkpoint). SSD mounted; Ollama/oMLX not running; Desktop running, then
+   `curl -s :8188/system_stats` → check `ram_free`.
 3. T-EVENT-05: open the SDXL template in Desktop (not the default Z-Image Turbo template
    — its 19 GB bf16 models don't fit in 16 GB), generate one image, export the workflow
    in both UI and API format to `workflows/`, submit the API version via curl as a
@@ -127,6 +129,7 @@ to free memory before T-EVENT-05. The event is tomorrow (`CLAUDE.local.md`).
 
 **Session continuity:** Next session is a cold start — re-read CLAUDE.md before doing
 anything. Sessions are never re-entered. End-of-session updates cover three layers: this
-brief, `docs/session-state.md`, and `TODO.md`.
+brief, `docs/session-state.md`, and `TODO.md` — plus a refresh of `.atlas/overview.md`
+(gitignored) when the session moved the project.
 Full archaeology: `docs/session-state.md` — consult when prior-thread depth, decision
 reasoning, or ruled-out paths are needed.

@@ -43,3 +43,26 @@
 
 **Commits**
 - Session housekeeping commit (setup doc, model register, TODO and CLAUDE.md updates).
+
+## 2026-11-03 (late evening) — Atlas overview session
+
+**Done**
+- Created `.atlas/overview.md` via `/atlas-overview` (create mode): slug `comfy-lab`,
+  title "ComfyUI Lab", visibility public, role_fit innovation-lead, host `mac-m4-pro`.
+  `.atlas/` was already gitignored. Two [NEEDS] markers remain (success test; first
+  image link), both resolvable only after the event / T-EVENT-05.
+- Added a Standing operation in TODO.md §4 for refreshing the overview.
+
+**Decisions and reasoning**
+- Motivation clarified by the operator: continuous learning, self-initiated. No work use
+  is planned, but output could feed work presentations later, so licence tracking stays.
+  Overview wording reflects this; CLAUDE.md/README's "possibly for work" already matches.
+- Event organiser: recorded in the overview only (internal file).
+
+**Observed**
+- Before restart: ~7.1 GB usable (1.9 free + 1.6 speculative + 3.6 inactive), 4.9 GB
+  active, 2.3 GB wired; memory pressure normal; Ollama/oMLX not running; Desktop closed.
+  Tight for SDXL, so the restart stays a pre-flight step.
+
+**Commits**
+- Session housekeeping commit (CLAUDE.md brief, TODO.md §4, this entry).
