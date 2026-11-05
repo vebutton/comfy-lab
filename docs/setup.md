@@ -49,3 +49,10 @@ base-model pipeline, which is the one active by default — swap them):
 | Warm | 64.2 s | Models and prompt encoding cached (API submission via curl) |
 
 Workflow: `workflows/flux2-klein-4b-distilled-1024.{ui,api}.json`.
+
+Event day (2026-11-04), same machine: Klein first run after launch 95 s, then 94–104 s
+with new prompts each time (prompt encoding not cached). SDXL 1024 after `POST /free`:
+154 s. Unload between model switches with
+`curl -X POST :8188/free -H 'Content-Type: application/json' -d '{"unload_models":true,"free_memory":true}'`.
+Images submitted through the API appear in Desktop's Queue/Assets sidebar, not on the
+canvas; files land in `~/ComfyUI-Shared/output/`.

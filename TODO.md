@@ -74,7 +74,7 @@ Recurring work: no IDs, no checkboxes, tracked by last-run date.
 
 | Operation | Cadence / trigger | Last run | Notes |
 |---|---|---|---|
-| Unload Ollama and oMLX models | Before every ComfyUI generation session | 2026-11-03 | All three share 16 GB; ComfyUI crawls or crashes otherwise |
+| Unload Ollama and oMLX models | Before every ComfyUI generation session | 2026-11-04 | All three share 16 GB; ComfyUI crawls or crashes otherwise |
 | Register new models and custom nodes | Whenever one is downloaded | 2026-11-03 | `docs/models.md` (with licence), `docs/custom-nodes.md` |
 | Refresh `.atlas/overview.md` | End of any session that moved the project | 2026-11-03 | Gitignored internal snapshot; refresh via `/atlas-overview` |
 

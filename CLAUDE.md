@@ -96,16 +96,17 @@ existing track** or **must stand alone**.
 > Forward-looking operating context only. Archaeology lives in `docs/session-state.md`.
 > Task state is not kept here: open items, progress and recurring work live in `TODO.md`.
 
-**Last (2026-11-03 night):** Track 1 finished. SDXL and FLUX.2 [klein] 4B distilled both
-generate at 1024 on the M4 (146.7 s vs 64.2 s warm), workflows saved in UI + API format,
-curl submission verified for both. T-PROJ-01 and T-PROJ-02 closed. Every TODO item is now
-closed; what remains is post-event work in TODO.md §3 and §5. The event is 2026-11-04
-(`CLAUDE.local.md`).
+**Last (2026-11-04, at the event):** Pre-flight passed; generated five images via the
+API (no repo changes beyond notes). Finding: Klein 4B is fast and photoreal but weak on
+art styles (Picasso cubism came out as facets painted over a realistic figure) and on
+celebrity likeness (generic face); SDXL rendered a recognisable public figure. No
+presenter models or workflows captured yet. Every TODO item is still closed.
 
 **Next session — pick up here:**
 1. Cold start — re-read CLAUDE.md and CLAUDE.local.md. Consult docs/session-state.md on demand.
 2. If at the event: pre-flight as usual (SSD mounted, Ollama/oMLX off, Desktop up,
-   `curl -s :8188/system_stats`). Default to Klein (`workflows/flux2-klein-4b-distilled-1024.*`).
+   `curl -s :8188/system_stats`). Default to Klein (`workflows/flux2-klein-4b-distilled-1024.*`)
+   for speed and photoreal scenes; use SDXL for artist styles or likeness.
    New models the presenters need: register with licence before use.
 3. Capture presenter workflows and notes into `collateral/` (gitignored); nothing gets
    committed until its licence is known (TODO.md §3).
@@ -117,7 +118,16 @@ closed; what remains is post-event work in TODO.md §3 and §5. The event is 202
   bypassed (purple). Swap them (Node state → Normal/Bypass, or ⌘B) — including the Save
   Image nodes. Steps/CFG live inside the subgraphs.
 - Memory: first Klein run at 1024 pushed swap to ~12.8 GB. Keep other engines and heavy
-  tabs closed; first image after launch is slow, then ~1 min each.
+  tabs closed; first image after launch is slow, then ~1 min each. Before switching
+  models, `POST :8188/free` `{"unload_models":true,"free_memory":true}` (swap fell
+  12.8 → 5.6 GB going Klein → SDXL).
+- API-submitted runs don't appear on the Desktop canvas — only in the Queue/Assets
+  sidebar and `~/ComfyUI-Shared/output/`. `open` the file for the operator.
+- API submissions: change the seed each time (else cached); for SDXL edit the negative
+  prompt (node 11 still says "color", from the statue test) and keep prompts short with
+  the subject first — a long object list made SDXL drop the person entirely.
+- Real-person likenesses (celebrities, politicians): label as AI-generated; keep out of
+  work-facing material (publicity rights, implied endorsement).
 - Pull workflows from server history (`/history` → `prompt[2]` = API, `prompt[3]
   .extra_pnginfo.workflow` = UI) rather than exporting by hand; scan for personal paths
   before committing.

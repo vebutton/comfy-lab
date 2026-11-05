@@ -105,3 +105,36 @@
 **Commits**
 - `0f9905a` T-EVENT-05; `6b0fd2e` Klein download + T-PROJ-01/02; `2e05369` T-EVENT-06 +
   Track 1 done; plus this housekeeping commit.
+
+## 2026-11-04 — Event-day generation session
+
+**Done**
+- Recalled the tested models (SDXL base 1.0; FLUX.2 [klein] 4B distilled) from `docs/models.md`.
+- Pre-flight: SSD mounted (1.4 TB free), all 4 model files present, Ollama/oMLX not
+  running, Desktop up on `:8188` (core 0.44.0, PyTorch 2.12.1, MPS), 7.2 GB free.
+- Five 1024 images via curl API submission (outputs in `~/ComfyUI-Shared/output/`, not
+  committed): Klein hedgehog test (95 s, first after launch), Klein analytic-cubist
+  "Picasso style" woman with instrument (102 s), Klein cubist Fort Worth cowboy (94 s),
+  Klein photoreal celebrity-in-eggshell (104 s), SDXL politician-at-desk ×2 (154 s each).
+
+**Decisions and reasoning**
+- Model fit: Klein 4B renders photoreal scenes well but has little artist-style or
+  celebrity-likeness knowledge — cubism prompts produced intact realistic figures with
+  facet lines; a named celebrity came out generic. SDXL produced a recognisable public
+  figure. Working rule: Klein for speed/photoreal, SDXL for styles/likeness.
+- SDXL prompt length: a long prompt (≈75+ tokens, object-heavy, "from behind his
+  shoulder") produced an empty desk. A short prompt with the subject first and weighted
+  `(name:1.3)` fixed it. Fine details (tie colour, Mac mini, node-graph screen) still
+  missed; on-screen UI is better composited from a real screenshot.
+- Called `POST /free` before switching Klein → SDXL; swap fell 12.8 → 5.6 GB.
+- Real-person images flagged to the operator: label as AI, keep out of work use.
+
+**Observed**
+- API-submitted images don't show on the Desktop canvas; they appear in the
+  Queue/Assets sidebar. Operator initially couldn't find the first image.
+- The saved SDXL API workflow's negative prompt includes "color, colored" (from the
+  monochrome statue test) — must be overridden for colour work.
+- Klein cold first run at the event was 95–104 s (vs 84 s at home); swap hit 12.8 GB.
+
+**Commits**
+- This housekeeping commit only.
